@@ -39,7 +39,7 @@
 (package! emojify :recipe (:host github :repo "iqbalansari/emacs-emojify"))
 
 ;; lightweight (un|re)do
-(package! undo-fu :recipe (:host gitlab :repo "ideasman42/emacs-undo-fu"))
+;;(package! undo-fu)
 
 ;; use poetry instead of pipenv
 (package! pipenv :disable t )

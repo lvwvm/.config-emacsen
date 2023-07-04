@@ -105,9 +105,9 @@ This function works recursively. File "
 ;; org-agenda
 ;; A single org agenda file is stored in $XDG_DATA_HOME. This file contains
 ;; the list of all org files that will included in the 'org-agenda-menu'
-  (setq org-agenda-files #'(lambda (dirs)
-                                 "Recursively search each directory in DIRS list for .org files."
-                               (directory-files-recursively "~/Documents/" "\.org$" t)) dirs )
+  ;; (setq org-agenda-files #'(lambda (dirs)
+  ;;                                "Recursively search each directory in DIRS list for .org files."
+  ;;                              (directory-files-recursively "~/Documents/" "\.org$" t)) dirs)
 
   (setq org-tag-alist '(("")))
   (setq org-tag-alist-for-agenda '(("@tasks" . ?t)
