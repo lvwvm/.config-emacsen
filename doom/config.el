@@ -84,9 +84,31 @@
 ;; disable auto saving.
 (setq auto-save-default nil)
 (defun gather-files-recursively (pattern &optional exclude)
-    "Return a list of all files under the current directory whose names match REGEXP.
+  "Return a list of all files under the current directory whose names match REGEXP.
 This function works recursively. File "
-    ())
+  ())
+;;;
+(use-package! gptel
+  :config
+  (setq
+   gptel-model ""
+   gptel-backend '())
+
+  (gptel-make-anthropic
+   "claude-thinking"
+   :stream t
+   :key (quote (getenv "ANTHROPIC_API_KEY"))
+   :models '(claude-opus-4-20250514
+             claude-sonnet-4-20250514
+             claude-3-7-sonnet-20250219
+             claude-3-5-haiku-20241022))
+  :header (lambda () (when-let* ((key (gptel--get-api-key)))
+                       `(("x-api-key" . ,key)
+                         ("anthropic-version" . "2023-06-01")
+                         ("anthropic-beta" . "pdfs-2024-09-25")
+                         ("anthropic-beta" . "output-128k-2025-02-19"))))
+  :request-params '(:thinking (:type "enabled" :budget_tokens 2048)
+                    :max_tokens 4096))
 ;;;; org mode
 (use-package! org
   :init
@@ -94,17 +116,17 @@ This function works recursively. File "
   :config
   ;; org-todo
   (setq org-todo-keywords '((sequence "TODO(t@)"
-                            "ACTIVE(a!)"
-                            "WAITING(w@/!)"
-                            "|"
-                            "DONE(d!)")
+                             "ACTIVE(a!)"
+                             "WAITING(w@/!)"
+                             "|"
+                             "DONE(d!)")
                             (type "BUG(b)" "HACK(h)" "REVIEW(r)")
                             (type "URGENT(u)" "VOLUTARY(v)" "COMMITED(m)")
                             (sequence "CANCELED(c@)")))
 
-;; org-agenda
-;; A single org agenda file is stored in $XDG_DATA_HOME. This file contains
-;; the list of all org files that will included in the 'org-agenda-menu'
+  ;; org-agenda
+  ;; A single org agenda file is stored in $XDG_DATA_HOME. This file contains
+  ;; the list of all org files that will included in the 'org-agenda-menu'
   ;; (setq org-agenda-files #'(lambda (dirs)
   ;;                                "Recursively search each directory in DIRS list for .org files."
   ;;                              (directory-files-recursively "~/Documents/" "\.org$" t)) dirs)

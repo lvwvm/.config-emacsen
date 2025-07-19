@@ -92,6 +92,7 @@
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        gist              ; interacting with github gists
+       llm
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
        (lsp
