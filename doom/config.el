@@ -95,13 +95,13 @@ This function works recursively. File "
    gptel-backend '())
 
   (gptel-make-anthropic
-   "claude-thinking"
-   :stream t
-   :key (quote (getenv "ANTHROPIC_API_KEY"))
-   :models '(claude-opus-4-20250514
-             claude-sonnet-4-20250514
-             claude-3-7-sonnet-20250219
-             claude-3-5-haiku-20241022))
+      "claude-thinking"
+    :stream t
+    :key (quote (getenv "ANTHROPIC_API_KEY"))
+    :models '(claude-opus-4-20250514
+              claude-sonnet-4-20250514
+              claude-3-7-sonnet-20250219
+              claude-3-5-haiku-20241022))
   :header (lambda () (when-let* ((key (gptel--get-api-key)))
                        `(("x-api-key" . ,key)
                          ("anthropic-version" . "2023-06-01")
@@ -225,6 +225,12 @@ This function works recursively. File "
   :config
   (setq leetcode-prefer-language "python3")
   (setq leetcode-prefer-sql "mysql"))
+
+(use-package! mise
+  :config
+  (add-hook! 'after-init-hook #'global-mise-mode))
+
+
 
 ;;  (use-package! spotify
 ;;  :config

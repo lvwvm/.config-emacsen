@@ -45,6 +45,9 @@
 (package! pipenv :disable t )
 (package! gptel :recipe (:nonrecursive t))
 
+;; the versatile language runtime manager
+(package! mise :recipe (:host github :repo "eki3z/mise.el"))
+(package! iedit :recipe (:host github :branch "main" :repo "victorhge/iedit"))
 ;;spotify client
 ;;(package! spotify.el :recipe (:host github :repo "danielfm/spotify.el"))
 
